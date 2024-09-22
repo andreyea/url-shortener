@@ -18,10 +18,14 @@ type HttpServer struct {
 	Address     string        `yaml:"address" env-required:"true"`
 	Timeout     time.Duration `yaml:"timeout" env-required:"true"`
 	IdleTimeout time.Duration `yaml:"idle_timeout" env-required:"true"`
+	User        string        `yaml:"user" env-required:"true"`
+	Password    string        `yaml:"password" env-required:"true" env:"HTTP_SERVER_PASSWORD"`
 }
 
 func MustLoad() *Config {
-	configPath := os.Getenv("CONFIG_PATH")
+	//configPath := os.Getenv("CONFIG_PATH")
+	configPath := "..\\..\\config\\local.yml"
+
 	if configPath == "" {
 		log.Fatal("CONFIG_PATH is not set")
 	}
